@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<title>Yani</title>
+<head>
+  <title>Estado del Carrito</title>
+  <style type="text/css">
+  .body {
+  font-family: Times New Roman;
+  font-size: 10pt;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  color: #FF80FF;
+  }
+
+  .td {
+  font-family: Times New Roman;
+  font-size: 10pt;
+  font-style: normal;
+  line-height: normal;
+  font-weight: normal;
+  font-variant: normal;
+  color: #80FFFF;
+  }
+
+  body {
+    font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 20px 50px 150px;
+    font-size: 13px;
+    text-align: center;
+    background-image: url("web.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #cccccc;
+  }
+  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+
+  <link rel="icon" type="image/png" href="images/yani.png" />
+  <LINK REL="stylesheet" TYPE="text/css" HREF="botonEstilo.css">
+  <LINK REL="stylesheet" TYPE="text/css" HREF="estilo.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="scrptMXH.js"></script>
+
+</head>
+<SCRIPT LANGUAGE="JavaScript">
+
+	function alterError(value) {
+		if (value<=0.99) {
+			newPounds = '0';
+		} else {
+			newPounds = parseInt(value);
+		}
+		newPence = parseInt((value+.0008 - newPounds)* 100);
+		if (eval(newPence) <= 9) newPence='0'+newPence;
+		newString = newPounds + '.' + newPence;
+		return (newString);
+	}
+	function showItems() {
+		index = document.cookie.indexOf("TheBasket");
+		countbegin = (document.cookie.indexOf("=", index) + 1);
+        	countend = document.cookie.indexOf(";", index);
+        	if (countend == -1) {
+            		countend = document.cookie.length;
+        	}
+		fulllist = document.cookie.substring(countbegin, countend);
+		totprice = 0;
+		document.writeln('<form><table border="1" cellspacing="0" width="640" bgcolor="#008080" bordercolor="#008040" class="td">');
+
+document.writeln('<TR><TD width="250"><b>Producto</b></TD><TD width="80" align="right"><b>Cantidad</b></TD><TD width="120" align="right"><b>Costo x unidad</b></TD><td width="100" align="right"><b>Costo total</b><TD width="90">&nbsp;</TD></TR>');
+		itemlist = 0;
+		for (var i = 0; i <= fulllist.length; i++) {
+			if (fulllist.substring(i,i+1) == '[') {
+				itemstart = i+1;
+			} else if (fulllist.substring(i,i+1) == ']') {
+				itemend = i;
+				thequantity = fulllist.substring(itemstart, itemend);
+				itemtotal = 0;
+				itemtotal = (eval(theprice*thequantity));
+				temptotal = itemtotal * 100;
+				var tax = itemtotal / 100 * (0 - 0);
+    				tax = Math.floor(tax * 100)/100
+				totprice = totprice + itemtotal + tax;
+				itemlist=itemlist+1;
+document.writeln('<tr><td>'+theitem+'</td><td align=right>'+thequantity+'</td><td align=right>'+theprice+'</td><td align=right>'+alterError(itemtotal)+'</td><td align=center><input TYPE="button" NAME="remove" VALUE="Quitar" onclick="javascript:removeItem('+itemlist+')"></td></tr>');
+			} else if (fulllist.substring(i,i+1) == ',') {
+				theitem = fulllist.substring(itemstart, i);
+				itemstart = i+1;
+			} else if (fulllist.substring(i,i+1) == '#') {
+				theprice = fulllist.substring(itemstart, i);
+				itemstart = i+1;
+			}
+		}
+
+
+
+		document.writeln('<tr><td colspan=3><b>Total</b></td><td align=right>'+alterError(totprice)+'</td><td>&nbsp;</td></tr>');
+		document.writeln('</TABLE>');
+	}
+
+	function removeItem(itemno) {
+		newItemList = null;
+		itemlist = 0;
+		for (var i = 0; i <= fulllist.length; i++) {
+			if (fulllist.substring(i,i+1) == '[') {
+				itemstart = i+1;
+			} else if (fulllist.substring(i,i+1) == ']') {
+				itemend = i;
+				theitem = fulllist.substring(itemstart, itemend);
+				itemlist=itemlist+1;
+				if (itemlist != itemno) {
+					newItemList = newItemList+'['+fulllist.substring(itemstart, itemend)+']';
+				}
+			}
+		}
+		index = document.cookie.indexOf("TheBasket");
+		document.cookie="TheBasket="+newItemList;
+		top.location = "estado.htm";
+	}
+
+	function clearBasket() {
+		if (confirm('�Confirma que desea reestablecer el carrito?')) {
+			index = document.cookie.indexOf("TheBasket");
+			document.cookie="TheBasket=.";
+			top.location = "estado.htm";
+		}
+	}
+</SCRIPT>
+<body class="body">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <section id="nav1">
+  <ul id="nav">
+    <li id="div1"><a title="Inicio" href="inicio.html">Inicio</a></li>
+    <li id="div2"><a title="Acerca" href="acerca.html">Acerca</a></li>
+    <li id="div3"><a title="Productos" href="productos.html">Productos</a></li>
+    <li id="div4"><a title="Mi carrito" href="carrito.html">Mi carrito</a></li>
+    <li id="div5"><a title="Adoptar" href="adoptar.html">Adoptar</a></li>
+    <li id="div6"><a title="Dar en adopción" href="dar.html">Dar en adopción</a></li>
+  </ul>
+</section>
+<center>
+  <table border="0" cellpadding="0" cellspacing="0" width="640" class="body">
+    <tr>
+      <td width="50%"><big><big>Estado del Carrito</big></big></td>
+      <td width="50%" align="right">[ <a href="Productos.html">Carrito de Compra</a> | Estado </a> ]</td>
+    </tr>
+    <tr>
+      <td width="100%" colspan="2">
+        <hr size="1" color="#FF80FF">
+      </td>
+    </tr>
+    <tr>
+      <td width="100%" colspan="2"></td>
+    </tr>
+  </table>
+  <br>
+<SCRIPT LANGUAGE="JavaScript">
+	showItems();
+</SCRIPT>
+  <br>
+  <table border="0" cellpadding="0" cellspacing="0" width="640" class="body">
+    <tr>
+      <td width="100%" colspan="2">
+        <hr size="1" color="#FF80FF">
+      </td>
+    </tr>
+    <tr>
+      <td width="50%"></td>
+      <td width="50%" align="right">[ <a href="javascript:clearBasket()">Reestablecer
+        Carrito</a> ]</td>
+    </tr>
+  </table>
+</center>
+</body>
+</body>
+</html>

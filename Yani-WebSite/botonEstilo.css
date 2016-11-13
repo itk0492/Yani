@@ -1,0 +1,253 @@
+#tabla2{
+
+  border: 1;
+  border-spacing: 2;
+  width: 640;
+  background: #783F6A;
+  opacity: 0.85;
+  border-style: dashed;
+  border-width: 2px 2px 2px 2px;
+  border-color: Black;
+ }
+
+h1{
+  font-family: "Calligraffitti";
+  font-size: 48px;
+  text-shadow: 3px 3px 3px DimCrey;
+}
+
+#Boton{
+        font-size:10px;
+        font-family:Verdana,Helvetica;
+        font-weight:bold;
+        color:white;
+        background:#638cb5;
+        border:0px;
+        width:80px;
+        height:19px;
+}
+
+.td {
+font-family: Times New Roman;
+font-size: 10pt;
+font-style: normal;
+line-height: normal;
+font-weight: normal;
+font-variant: normal;
+color: #80FFFF; /*Color de las letras descripción del artículo*/
+}
+
+#pet{
+  width: 160px; height: 160px;
+  border-radius: 50%;
+}
+
+#pet:hover{
+ -webkit-transform: rotate(360deg) scale(2, 2);
+-moz-transform: rotate(360deg) scale(2, 2);
+-o-transform: rotate(360deg) scale(2 ,2);
+transform: rotate(360deg) scale(2, 2);
+}
+
+#gatos{
+    position: relative;
+    display: inline-block;
+
+}
+h2 {
+  font-size: 24px;
+  padding: 20px 0;
+  }
+
+#intro {
+  position: relative;
+  margin-top: 50px;
+  padding: 20px;
+  background: #695e53 url("images/introbkg.png") repeat-x;
+
+  /* background size */
+  -webkit-background-size: 100%;
+  -o-background-size: 90%;
+  -khtml-background-size: 100%;
+
+
+  /* curved border radius */
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  }
+
+  #intro h2, #intro p {
+  position: relative;
+  z-index: 9999;
+  width: 350px;
+  }
+
+#intro h2 {
+  padding: 0 0 20px 0;
+  font-weight: normal;
+  color: #fff;
+  }
+
+#intro p {
+  padding: 0;
+  font-size: 16px;
+  color: #d6a965;
+  }
+
+#intro img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 653px;
+  height: 100%;
+  opacity: 0.8;
+
+  /* curved border radius */
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  }
+
+/*ETIQUETA CONTENT ADOCIPCIÓN*/
+  #content {
+  position: relative;
+  margin-top: 50px;
+  float: left;
+  width: 920px;
+  margin:10px 5px 10px 0;
+  padding:5px 20px 5px 20px;
+  background-color: #f2ede7;
+
+/* curved border radius */
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+/* columns */
+
+#content ul.column {
+  width: 100%;
+  padding: 0;
+  margin: 10px 0;
+  list-style: none;
+}
+
+#content ul.column li {
+  float: left;
+  width: 230px; /*Set default width*/
+  padding: 0;
+  margin: 5px 0;
+  display: inline;
+}
+
+#content .block {
+  height: 355px;
+  font-size: 1em;
+  margin-right: 10px; /*Creates the 10px gap between each column*/
+  padding: 20px;
+  background: #d6a965;
+/* curved border radius */
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+#content .block a {
+  color: #FFF;
+  }
+
+#content .block img {
+  /*Flexible image size with border*/
+  width: 89%;  /*Took 1% off of the width to prevent IE6 bug*/
+  padding: 5%;
+  background:#fff;
+  margin: 0 auto;
+  display: block;
+  -ms-interpolation-mode: bicubic; /*prevents image pixelation IE 6/7 */
+  }
+/* end of column configuration */
+
+/* footer */
+footer {
+  width: 960px;
+  clear: both;
+  color: #f2ede7;
+  overflow: hidden;
+  padding-top: 10px;
+  background-color: #271408;
+  /* curved border radius */
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  height: 200px;
+  margin-bottom: 10px;
+  }
+
+footer section {
+width: 300px;
+float: left;
+padding: 0 10px;
+}
+
+footer section h2 {
+margin-top: 0;
+}
+
+footer section p {
+  font-size: 12px;
+  }
+
+footer section a {
+  color: #999;
+  }
+
+footer section a:hover {
+  color: #FFF;
+  text-decoration: none;
+  }
+
+/* for inner pages */
+
+/* content and sidebar layout */
+
+#innercontent {
+  float: left;
+  width: 610px;
+  margin:10px 5px 10px 0;
+  padding:5px 20px 5px 20px;
+  background-color: #d6a965;
+
+/* curved border radius */
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+aside {
+  float: right;
+  text-align: left;
+  width: 300px;
+  margin:0;
+  padding:0;
+  }
+
+/* article */
+.articlecontent header p, .blogPost header p a {
+  font-size: 14px;
+  font-style: italic;
+  color: #777;
+  }
+
+.articlecontent p a {
+  color: #695e53;
+  }
+
+.articlecontent p a:hover {
+  color: #fff;
+  }
+
+.articlecontent header p a:hover {
+  text-decoration: none;
+  color: #000;
+  }
+
+/* box shadow on pics */
+.articlecontent img {
+  -webkit-box-shadow: 3px 3px 7px #777;
+  }
